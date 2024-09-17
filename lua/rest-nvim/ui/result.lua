@@ -85,6 +85,9 @@ local panes = {
                     elseif config.response.hooks.format then
                         -- NOTE: format hook runs here because it should be done last.
                         local ok
+                        if res_type == "problem+json" then
+                            res_type = "json"
+                        end
                         body, ok = utils.gq_lines(body, res_type)
                         if ok then
                             table.insert(body_meta, "formatted")
